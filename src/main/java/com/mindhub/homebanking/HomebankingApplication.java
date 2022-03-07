@@ -2,8 +2,11 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.Transaction;
+import com.mindhub.homebanking.models.TransactionType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.repositories.TransactionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +23,9 @@ public class HomebankingApplication {
     }
 
     @Bean
-    public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository) {
+    public CommandLineRunner initData(ClientRepository clientRepository,
+                                      AccountRepository accountRepository,
+                                      TransactionRepository transactionRepository) {
         return (args) -> {
             //guardar cliente en el repositorio
             Client client1 = new Client("Melba", "Morel", "melba@mindhub.com");
@@ -44,6 +49,19 @@ public class HomebankingApplication {
 
             Account account5 = new Account("VIN945", LocalDateTime.now(),8000, client2);
             accountRepository.save(account5);
+
+            //asignar transacciones a distintas cuentas
+            Transaction transaction1 = new Transaction(TransactionType.DEBIT, -5000, "Compra realizada...", LocalDateTime.now(), account1);
+            transactionRepository.save(transaction1);
+
+            Transaction transaction2 = new Transaction(TransactionType.CREDIT, 10030, "Transferencia recibida...", LocalDateTime.now(), account1);
+            transactionRepository.save(transaction2);
+
+            Transaction transaction3 = new Transaction(TransactionType.CREDIT, 6030, "Transferencia recibida...", LocalDateTime.now(), account2);
+            transactionRepository.save(transaction3);
+
+            Transaction transaction4 = new Transaction(TransactionType.DEBIT, -2030, "Compra realizada...", LocalDateTime.now(), account2);
+            transactionRepository.save(transaction4);
         };
     }
 
