@@ -24,7 +24,7 @@ public class ClientController {
     @Autowired
     private AccountRepository accountRepository;
 
-    @RequestMapping("/client/{id}")
+    @RequestMapping("/clients/{id}")
     public ClientDTO getClient(@PathVariable Long id) {
 
         ClientDTO client;
