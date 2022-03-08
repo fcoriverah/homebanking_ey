@@ -1,18 +1,15 @@
 package com.mindhub.homebanking;
 
-import com.mindhub.homebanking.models.Account;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.Transaction;
-import com.mindhub.homebanking.models.TransactionType;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Stream;
 
 
 @SpringBootApplication
@@ -25,7 +22,9 @@ public class HomebankingApplication {
     @Bean
     public CommandLineRunner initData(ClientRepository clientRepository,
                                       AccountRepository accountRepository,
-                                      TransactionRepository transactionRepository) {
+                                      TransactionRepository transactionRepository,
+                                      LoanRepository loanRepository,
+                                      ClientLoanRepository clientLoanRepository) {
         return (args) -> {
             //guardar cliente en el repositorio
             Client client1 = new Client("Melba", "Morel", "melba@mindhub.com");
@@ -62,6 +61,29 @@ public class HomebankingApplication {
 
             Transaction transaction4 = new Transaction(TransactionType.DEBIT, -2030, "Compra realizada...", LocalDateTime.now(), account2);
             transactionRepository.save(transaction4);
+
+            //crear prestamos
+            Loan prestamo1 = new Loan("Hipotecario", 500.000, List.of(12,24,36,48,60));
+            loanRepository.save(prestamo1);
+
+            Loan prestamo2 = new Loan("Personal", 100.000, List.of(6,12,24));
+            loanRepository.save(prestamo2);
+
+            Loan prestamo3 = new Loan("Automotriz", 300.000, List.of(6,12,24,36));
+            loanRepository.save(prestamo3);
+
+            //asignar prestamos a clientes
+            ClientLoan prestamoCliente1 = new ClientLoan(prestamo1, client1, 400000.0, 60);
+            clientLoanRepository.save(prestamoCliente1);
+
+            ClientLoan prestamoCliente2 = new ClientLoan(prestamo2, client1, 50000.0, 12);
+            clientLoanRepository.save(prestamoCliente2);
+
+            ClientLoan prestamoCliente3 = new ClientLoan(prestamo3, client2, 34230.0, 3);
+            clientLoanRepository.save(prestamoCliente3);
+
+            ClientLoan prestamoCliente4 = new ClientLoan(prestamo1, client2, 6550.0, 24);
+            clientLoanRepository.save(prestamoCliente4);
         };
     }
 
