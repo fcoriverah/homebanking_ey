@@ -33,6 +33,7 @@ public class Account {
     //constructor
     public Account() {
     }
+
     public Account(String number, LocalDateTime creationDate, double balance, Client client) {
         this.number = number;
         this.creationDate = creationDate;
@@ -52,10 +53,6 @@ public class Account {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getNumber() {

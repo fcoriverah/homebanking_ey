@@ -22,7 +22,7 @@ public class Transaction {
     private LocalDateTime date;
 
     //relaacion
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER) //Eager para traer los datos de forma inmediata
     @JoinColumn(name="account_id")
     private Account account;
 
@@ -41,10 +41,6 @@ public class Transaction {
     //getters y setters
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public TransactionType getType() {

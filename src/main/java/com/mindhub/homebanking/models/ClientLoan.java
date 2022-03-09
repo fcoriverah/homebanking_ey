@@ -42,10 +42,6 @@ public class ClientLoan {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public Loan getLoan() {
         return loan;
     }

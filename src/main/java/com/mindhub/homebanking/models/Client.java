@@ -1,6 +1,5 @@
 package com.mindhub.homebanking.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -20,6 +19,10 @@ public class Client {
     private String firstName;
     private String lastName;
     private String email;
+
+    //relaciones
+    @OneToMany(mappedBy="client", fetch= FetchType.EAGER)
+    Set<Card> cards = new HashSet<>();
 
     //relacion
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
@@ -41,10 +44,6 @@ public class Client {
     //getters y setters
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getEmail() {
@@ -87,6 +86,14 @@ public class Client {
 
     public Set<ClientLoan> getLoans() {
         return clientLoans;
+    }
+
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
     }
 
     public void setClientLoans(Set<ClientLoan> clientLoans) {
