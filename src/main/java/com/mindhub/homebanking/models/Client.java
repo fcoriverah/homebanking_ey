@@ -19,6 +19,7 @@ public class Client {
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
 
     //relaciones
     @OneToMany(mappedBy="client", fetch= FetchType.EAGER)
@@ -35,10 +36,11 @@ public class Client {
     //constructor
     public Client() { }
 
-    public Client(String first, String last, String email) {
+    public Client(String first, String last, String email, String password) {
         this.firstName = first;
         this.lastName = last;
         this.email = email;
+        this.password = password;
     }
 
     //getters y setters
@@ -68,6 +70,14 @@ public class Client {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     //metodos
