@@ -22,7 +22,9 @@ class WebAuthorization extends WebSecurityConfigurerAdapter {
                 //.mvcMatchers("/web/index.html").permitAll()
                 .antMatchers("/web/index.html", "/web/css/**", "/web/js/**", "/web/img/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/**").hasAuthority("CLIENT");
+
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")

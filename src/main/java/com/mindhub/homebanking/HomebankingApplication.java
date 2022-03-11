@@ -93,13 +93,20 @@ public class HomebankingApplication {
             clientLoanRepository.save(prestamoCliente4);
 
             //crear tarjetas
-            Card card1 = new Card(CardColor.GOLD, CardType.DEBIT, "4929-7220-8541-4927", 627, client1.getFirstName() + " " + client1.getLastName(), LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
+            Card card1 = new Card(
+                    CardColor.GOLD, CardType.DEBIT, "4929-7220-8541-4927", 627,
+                    client1.getFirstName() + " " + client1.getLastName(),
+                    LocalDateTime.now().plusYears(5), LocalDateTime.now(), client1);
             cardRepository.save(card1);
 
-            Card card2 = new Card(CardColor.TITANIUM, CardType.CREDIT, "4024-0071-4682-1441", 357, client1.getFirstName() + " " + client1.getLastName(), LocalDateTime.now(), LocalDateTime.now().plusYears(5), client1);
+            Card card2 = new Card(CardColor.TITANIUM, CardType.CREDIT, "4024-0071-4682-1441",
+                    357, client1.getFirstName() + " " + client1.getLastName(),
+                    LocalDateTime.now().plusYears(5), LocalDateTime.now(), client1);
             cardRepository.save(card2);
 
-            Card card3 = new Card(CardColor.SILVER, CardType.CREDIT, "4532-6392-4366-7973", 210, client2.getFirstName() + " " + client2.getLastName(), LocalDateTime.now(), LocalDateTime.now().plusYears(5), client2);
+            Card card3 = new Card(CardColor.SILVER, CardType.CREDIT, "4532-6392-4366-7973",
+                    210, client2.getFirstName() + " " + client2.getLastName(),
+                    LocalDateTime.now().plusYears(5), LocalDateTime.now(), client2);
             cardRepository.save(card3);
         };
     }
