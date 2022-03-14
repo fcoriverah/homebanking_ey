@@ -70,13 +70,13 @@ public class HomebankingApplication {
             transactionRepository.save(transaction4);
 
             //crear prestamos
-            Loan prestamo1 = new Loan("Hipotecario", 500.000, List.of(12,24,36,48,60));
+            Loan prestamo1 = new Loan("Hipotecario", 500000.000, List.of(12,24,36,48,60));
             loanRepository.save(prestamo1);
 
-            Loan prestamo2 = new Loan("Personal", 100.000, List.of(6,12,24));
+            Loan prestamo2 = new Loan("Personal", 100000.000, List.of(6,12,24));
             loanRepository.save(prestamo2);
 
-            Loan prestamo3 = new Loan("Automotriz", 300.000, List.of(6,12,24,36));
+            Loan prestamo3 = new Loan("Automotriz", 300000.000, List.of(6,12,24,36));
             loanRepository.save(prestamo3);
 
             //asignar prestamos a clientes
